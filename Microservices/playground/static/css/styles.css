@@ -1,0 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,100;1,200&family=Roboto:wght@100;300&family=VT323&family=Work+Sans:ital,wght@1,200&display=swap');
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    background-color: #eee;
+    font-family: 'Roboto', sans-serif;
+}
