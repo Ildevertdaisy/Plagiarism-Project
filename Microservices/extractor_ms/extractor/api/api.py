@@ -1,5 +1,10 @@
 
 from extractor.app import app
+from pydantic import BaseModel
+
+
+class InputSchema(BaseModel):
+    file_token: str
 
 
 @app.get("/")
@@ -22,3 +27,8 @@ def about():
         ]
             
     }
+
+
+@app.post("/extractor/text")
+def extract_text(payload: InputSchema):
+    pass
