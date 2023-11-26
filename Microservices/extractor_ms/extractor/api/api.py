@@ -1,10 +1,15 @@
 
 from extractor.app import app
 from pydantic import BaseModel
+from .logic import extract_text_from_zip
 
 
 class InputSchema(BaseModel):
     file_token: str
+
+
+class OuputSchema(BaseModel):
+    text: str
 
 
 @app.get("/")
@@ -29,6 +34,10 @@ def about():
     }
 
 
-@app.post("/extractor/text")
+@app.post("/extractor/text", response_model=OuputSchema)
 def extract_text(payload: InputSchema):
-    pass
+    file_token = payload.file_token
+    output = extract_text_from_zip(file_token)
+    return {
+        "text": output
+    }
