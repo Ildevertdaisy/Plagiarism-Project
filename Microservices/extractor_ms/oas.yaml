@@ -1,0 +1,73 @@
+
+openapi: 3.0.3
+
+info:
+  title: Extractor API
+  description: API that allows to extract text from zip file and pdf file
+  version: 1.0.0
+
+servers:
+  - url : http://127.0.0.1:3002
+    description: main local server
+  - url : https://x.x.x.x:4001
+    description: main production server
+
+paths:
+  /:
+    get:
+      summary: Returns a welcome message
+      operationId: indexExtractor
+      response:
+        '200'
+  /about:
+    get:
+      summary: Returns microservice metadata
+      operationId: aboutExtractor
+      response: 
+        '200'
+  /extractor/text:
+    post:
+      summary: Extract text from .zip file.
+      operationId: extractText
+      requestBody:
+        required: true
+        content:
+          application/json:
+            $ref: '#/components/schemas/InputSchema'
+      response:
+        '200':
+            description: ok
+            content: 
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/OuputSchema'
+        '422':
+           description: ok
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/ErrorOuputSchema'
+
+components:
+  schemas:
+    InputSchema:
+      type: object
+      required:
+        - file_token
+      properties:
+        file_token:
+          type: string
+    OuputSchema:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+    ErrorOuputSchema:
+      type: object
+      required: 
+        - message
+      properties:  
+        message:
+          type: string
