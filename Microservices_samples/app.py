@@ -22,7 +22,7 @@ def send():
     message = Message(
         subject='Hello from other side!',
         recipients=['ildevertdaisy@gmail.com'],
-        sender='ildevert@cherlock-ai.com'
+        sender='robot@cherlock-ai.com'
     )
 
     message.body = "Hey Ildo, how are you."
